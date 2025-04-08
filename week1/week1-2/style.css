@@ -1,0 +1,53 @@
+body {
+  background-color: aliceblue;
+}
+header {
+  background-color: skyblue;
+  text-align: center;
+  padding: 20px;
+  color: white;
+  font-size: 26px;
+  font-weight: 800;
+}
+dl {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  justify-content: space-between;
+}
+dl div {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px auto;
+  text-align: left;
+  border: 2px solid #d0d0d0;
+}
+dl div:first-child {
+  flex: 2;
+}
+dl div:last-child {
+  flex: 1;
+}
+
+dl div dt {
+  font-weight: 700;
+  font-size: 18px;
+}
+.dt-title {
+  margin-bottom: 10px;
+}
+dd {
+  margin-inline-start: 0;
+}
+footer {
+  background-color: skyblue;
+  text-align: center;
+  padding: 10px;
+  color: white;
+  font-size: 21px;
+  font-weight: 800;
+  border-radius: 10px 10px 0 0;
+}
