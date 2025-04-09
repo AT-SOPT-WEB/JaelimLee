@@ -1,0 +1,245 @@
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+/* 헤더 */
+header {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(9, 22, 33);
+  padding: 7px 18px;
+  box-sizing: border-box;
+  z-index: 10;
+}
+header .logo-img-div,
+header h1,
+header .menu-img-div {
+  flex: 1;
+}
+header .logo-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 99px;
+}
+.menu-img-div {
+  text-align: right;
+}
+header .menu-img {
+  width: 5vw;
+  object-fit: contain;
+}
+header h1 {
+  font-size: 120%;
+  color: white;
+  text-align: center;
+}
+/* 본론 시작~ */
+main {
+  padding: 135px 16px;
+  position: relative;
+}
+/* 목차쪽 nav바 */
+aside {
+  left: 16px;
+  top: 350px;
+  position: fixed;
+  width: 115px;
+  height: 170px;
+  background-color: rgb(9, 22, 33);
+  border-radius: 12px;
+  padding: 10px;
+  cursor: pointer;
+}
+aside h3 {
+  color: white;
+}
+aside ul {
+  padding-inline-start: 0px;
+  display: flex;
+  flex-direction: column;
+}
+aside ul li {
+  list-style: none;
+  color: white;
+  background-color: rgb(240, 248, 255);
+
+  padding: 5px 2px;
+}
+aside ul li:first-child {
+  border-radius: 7px 7px 0 0;
+}
+aside ul li:last-child {
+  border-radius: 0 0 7px 7px;
+}
+aside ul li:hover {
+  background-color: rgb(163, 213, 242);
+}
+aside ul a {
+  text-decoration: none;
+  color: black;
+  font-weight: 700;
+}
+
+/* 섹션 쪽 */
+section {
+  width: calc(87vw - 115px);
+  margin-left: auto;
+}
+
+/* 상단 grid 영역 */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; /* 두 개의 열로 배치, 두 번째 열은 첫 번째 열의 두 배 */
+  grid-template-rows: 1fr 1fr 2fr; /* 세 개의 행으로 배치 */
+  gap: 16px; /* 요소 간 간격 */
+  height: 300px;
+  margin: 18px 0;
+}
+
+.container .item {
+  background-color: #000000;
+  border: 1px solid white;
+  padding: 20px;
+  color: white;
+  border-radius: 8px;
+}
+
+.container .item-1 {
+  grid-column: 1 / 4; /* 첫 번째 요소는 첫 번째 열 */
+  grid-row: 1 / 2; /* 첫 번째 요소는 첫 번째 행 */
+}
+
+.container .item-2 {
+  grid-column: 1 / 4; /* 두 번째 요소는 첫 번째 열 */
+  grid-row: 2 / 3; /* 두 번째 요소는 두 번째 행 */
+}
+
+.container .item-3 {
+  grid-column: 4 / 7; /* 세 번째 요소는 두 번째 열 */
+  grid-row: 1 / 3; /* 세 번째 요소는 첫 번째와 두 번째 행을 차지 */
+}
+
+.container .item-4 {
+  grid-column: 1 / 5;
+  grid-row: 3 / 4;
+}
+
+.container .item-5 {
+  grid-column: 5 / 7; /* 다섯 번째 요소는 두 번째 열 */
+  grid-row: 3 / 4; /* 다섯 번째 요소는 세 번째 행 */
+}
+
+.card-section {
+  width: 100%;
+  background-color: rgba(155, 190, 221, 0.36);
+  border-radius: 8px;
+  position: relative;
+  padding: 7px 26px 18px;
+  box-sizing: border-box;
+  margin-top: 18px;
+}
+.card-section .card-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+.card-section .card {
+  flex-shrink: 0;
+  width: 200px;
+  height: 270px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  padding: 10px;
+  gap: 8px;
+}
+.card-section .card-flex .card:hover {
+  transform: scale(1.1);
+  background-color: rgb(173, 201, 214);
+}
+.card-section .card .card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.card-section .card .heart-icon {
+  width: 26px;
+  height: 26px;
+  background-image: url("https://cdn-icons-png.flaticon.com/512/25/25424.png");
+  background-size: 100% 100%;
+  background-position: center;
+}
+.card-section .card .heart-icon:hover,
+.card-section .card .heart-icon:active {
+  width: 28px;
+  background-image: url("https://images.freeimages.com/vme/images/2/8/285590/red_heart_icon_preview");
+}
+
+/* 푸터 */
+footer {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  background-color: black;
+  color: white;
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+/* 배너 부분 */
+.banner-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.banner {
+  display: flex;
+  animation: scroll 10s linear infinite;
+}
+
+.banner img {
+  width: 200px;
+  height: 200px;
+  margin-right: 16px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* 반응형 : 일정크기보다 더 줄이면 아예 목차가 위로 끌어 올려지게 했습니다! */
+@media screen and (max-width: 550px) {
+  aside {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    left: 0;
+    top: 0;
+    height: 200px;
+    margin-top: 26px;
+  }
+  section {
+    width: 100%;
+    margin-top: 16px;
+  }
+}
