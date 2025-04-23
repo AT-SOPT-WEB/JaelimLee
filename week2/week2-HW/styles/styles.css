@@ -97,7 +97,24 @@ nav ul li select {
   font-size: 0.8rem;
   font-weight: 700;
 }
-
+/* 수정바 */
+.edit-bar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+.edit-bar .btn {
+  padding: 10px 8px 8px;
+  background-color: var(--main-sub);
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: var(--main-color);
+  font-weight: bold;
+}
 /* 푸터 */
 footer {
   position: absolute;
