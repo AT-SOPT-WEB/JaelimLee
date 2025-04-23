@@ -1,0 +1,44 @@
+@font-face {
+  font-family: "PartialSansKR-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/PartialSansKR-Regular.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "NoonnuBasicGothicRegular";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noon-2410@1.0/NoonnuBasicGothicRegular.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+:root {
+  --main-title: "PartialSansKR-Regular";
+  --main-font: "NoonnuBasicGothicRegular";
+}
+body {
+  box-sizing: border-box;
+  background-color: beige;
+  font-family: var(--main-font);
+}
+header {
+  background-color: rgb(187, 236, 188);
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: var(--main-title);
+  font-size: 1.2rem;
+}
+main {
+  padding: 20px 10px;
+}
+ul {
+  padding-inline-start: 0px;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  background-color: rgb(187, 236, 188);
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+}
