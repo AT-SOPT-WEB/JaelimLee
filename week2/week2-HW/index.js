@@ -48,3 +48,14 @@ export const todos = [
     priority: 3,
   },
 ];
+
+// nav 헤더
+const liElements = document.querySelectorAll(".nav-ul li");
+liElements.forEach((li) => {
+  li.addEventListener("click", function () {
+    liElements.forEach((item) => item.classList.remove("active"));
+
+    // 클릭한 li에 active 클래스 추가
+    this.classList.add("active");
+  });
+});

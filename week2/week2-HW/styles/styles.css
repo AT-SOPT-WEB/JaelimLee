@@ -45,6 +45,11 @@ nav ul li {
   font-size: 15px;
   cursor: pointer;
 }
+nav ul li.active {
+  background-color: rgb(187, 236, 188);
+  color: rgb(12, 70, 12);
+  font-weight: bold;
+}
 nav ul li:hover {
   background-color: rgb(187, 236, 188);
   font-weight: bold;
