@@ -115,6 +115,44 @@ nav ul li select {
   background-color: var(--main-color);
   font-weight: bold;
 }
+
+/* 할 일 table */
+table {
+  margin-top: 20px !important;
+  box-sizing: border-box;
+  width: 100%;
+}
+table tr {
+  display: flex;
+  justify-content: space-between;
+}
+table thead tr {
+  padding: 10px;
+}
+table tbody {
+  border-bottom: 3px solid rgb(220, 220, 220);
+}
+
+table tbody tr {
+  border-bottom: 1px solid rgb(220, 220, 220);
+  padding: 12px 10px;
+}
+table tbody tr:last-child {
+  border: none;
+}
+
+table thead {
+  border-bottom: 3px solid rgb(220, 220, 220);
+}
+table tr th,
+table tbody tr td {
+  flex: 1;
+  text-align: left;
+}
+table tbody {
+  text-align: center;
+}
+
 /* 푸터 */
 footer {
   position: absolute;
