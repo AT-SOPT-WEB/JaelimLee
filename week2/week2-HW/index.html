@@ -7,6 +7,51 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <header>재림's todolist</header>
+    <main>
+      <nav>
+        <ul>
+          <li>전체</li>
+          <li>완료됨</li>
+          <li>미완료</li>
+          <li>중요도<span>🔻</span></li>
+        </ul>
+      </nav>
+      <section>
+        <div class="search-bar">
+          <input placeholder="할 일을 입력하세요" type="" text />
+          <select>
+            <option value="score-5">5점</option>
+            <option value="score-4">4점</option>
+            <option value="score-3">3점</option>
+          </select>
+          <button value="등록">등록</button>
+        </div>
+        <div class="edit-bar">
+          <div>삭제</div>
+          <div>완료</div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>✅</th>
+              <th>중요도</th>
+              <th>완료됨</th>
+              <th>할 일</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>✅</td>
+              <td>5</td>
+              <td>완료</td>
+              <td>방청소</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+    <footer>@copywrite leejaelim _ 2주차 과제</footer>
     <script type="module" src="./index.js"></script>
   </body>
 </html>
