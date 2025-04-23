@@ -61,13 +61,13 @@ liElements.forEach((li) => {
 });
 
 // 입력 로직
-const searchBtn = document.querySelector(".search-bar .search-btn");
-const searchTxt = document.querySelector(".search-bar .search-input");
-const searchSelect = document.querySelector(".search-bar .search-select");
-searchBtn.addEventListener("click", function () {
-  if (searchSelect.value == "score-default" || searchTxt.value === "") {
+const additionBtn = document.querySelector(".addition-bar .addition-btn");
+const additionTxt = document.querySelector(".addition-bar .addition-input");
+const additionSelect = document.querySelector(".addition-bar .addition-select");
+additionBtn.addEventListener("click", function () {
+  if (additionSelect.value == "score-default" || additionTxt.value === "") {
     alert("입력조건을 확인해주세요 (할 일 입력 및 중요도 지정)");
   } else {
-    console.log(searchTxt.value);
+    console.log(additionTxt.value);
   }
 });

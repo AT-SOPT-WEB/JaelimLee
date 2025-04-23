@@ -66,8 +66,8 @@ nav ul li select {
   font-size: 15px;
   font-family: var(--main-font);
 }
-/* 검색 바 */
-.search-bar {
+/* 입력 바 */
+.addition-bar {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -77,20 +77,20 @@ nav ul li select {
   border-radius: 5px;
   background-color: var(--main-sub);
 }
-.search-bar .search-input {
+.addition-bar .addition-input {
   width: 70%;
   padding: 8px;
   border-radius: 5px;
   flex: 1;
   border: 1px solid silver;
 }
-.search-bar select {
+.addition-bar select {
   border: 1px solid silver;
   border-radius: 5px;
   border: 1px solid silver;
   padding: 5px;
 }
-.search-bar .search-btn {
+.addition-bar .addition-btn {
   background-color: var(--main-color);
   border: none;
   border-radius: 5px;
