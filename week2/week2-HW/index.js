@@ -71,3 +71,37 @@ additionBtn.addEventListener("click", function () {
     console.log(additionTxt.value);
   }
 });
+// 일정 데이터 fetch하기!
+function renderTodos() {
+  const tbody = document.querySelector("table tbody");
+  tbody.innerHTML = "";
+
+  todos.forEach((todo) => {
+    const tr = document.createElement("tr");
+    tr.classList.add("todo-data");
+
+    const checkboxTd = document.createElement("td");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = todo.completed;
+    checkboxTd.appendChild(checkbox);
+
+    const priorityTd = document.createElement("td");
+    priorityTd.textContent = todo.priority;
+
+    const completedTd = document.createElement("td");
+    completedTd.textContent = todo.completed ? "완료" : "미완료";
+
+    const titleTd = document.createElement("td");
+    titleTd.textContent = todo.title;
+
+    tr.appendChild(checkboxTd);
+    tr.appendChild(priorityTd);
+    tr.appendChild(completedTd);
+    tr.appendChild(titleTd);
+
+    tbody.appendChild(tr);
+  });
+}
+
+renderTodos();

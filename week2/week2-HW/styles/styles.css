@@ -24,6 +24,8 @@ body {
   font-family: var(--main-font);
 }
 header {
+  position: fixed;
+  width: 100%;
   background-color: var(--main-color);
   padding: 20px;
   box-sizing: border-box;
@@ -155,7 +157,7 @@ table tbody {
 
 /* 푸터 */
 footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   background-color: var(--main-color);
   width: 100%;
