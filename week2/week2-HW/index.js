@@ -1,4 +1,4 @@
-export const todos = [
+let todos = JSON.parse(localStorage.getItem("Todo")) || [
   {
     id: 1,
     title: "과제하기",
@@ -69,7 +69,17 @@ additionBtn.addEventListener("click", function () {
     alert("입력조건을 확인해주세요 (할 일 입력 및 중요도 지정)");
   } else {
     console.log(additionTxt.value);
+
+    todos.push({
+      id: 10,
+      title: "행복하고 건강하고 취뽀하기",
+      completed: true,
+      priority: parseInt(additionSelect.value),
+    });
+    console.log(todos);
+    localStorage.setItem("Todo", JSON.stringify(todos));
   }
+  additionTxt.value = "";
 });
 // 일정 데이터 fetch하기!
 function renderTodos() {
