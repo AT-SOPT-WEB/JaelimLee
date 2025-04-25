@@ -82,12 +82,59 @@ additionBtn.addEventListener("click", function () {
   renderTodos();
   additionTxt.value = "";
 });
-// 일정 데이터 fetch하기!
-function renderTodos() {
-  const tbody = document.querySelector("table tbody");
-  tbody.innerHTML = "";
 
-  todos.forEach((todo) => {
+// HTML 요소 선택
+const allLi = document.getElementById("all-li");
+const completeLi = document.getElementById("complete-li");
+const incompleteLi = document.getElementById("incomplete-li");
+const selectLi = document.getElementById("select-li");
+const selectToggle = document.querySelector(".select-toggle");
+
+selectLi.addEventListener("click", () => {
+  // select-toggle을 보이게 함
+  selectToggle.style.display =
+    selectToggle.style.display === "block" ? "none" : "block";
+});
+
+// 중요도 버튼 클릭 시 필터링
+const selectToggleButtons = document.querySelectorAll(".select-toggle div");
+
+selectToggleButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    selectToggle.style.display = "none"; // 선택 후 toggle 숨기기
+    const priority = parseInt(button.id.replace("select-toggle-", "")); // button의 id에서 중요도 추출
+    const filteredTodos = todos.filter((todo) => todo.priority === priority); // 중요도로 필터링
+    renderTodos(filteredTodos); // 필터링된 todos 렌더링
+  });
+});
+
+// nav 리스트에 클릭 이벤트 추가
+allLi.addEventListener("click", () => {
+  renderTodos(todos); // 전체 목록 렌더링
+});
+
+completeLi.addEventListener("click", () => {
+  const filteredTodos = todos.filter((todo) => todo.completed); // 완료된 항목만 필터링
+  renderTodos(filteredTodos);
+});
+
+incompleteLi.addEventListener("click", () => {
+  const filteredTodos = todos.filter((todo) => !todo.completed); // 완료된 항목만 필터링
+  renderTodos(filteredTodos);
+});
+
+// 일정 데이터 fetch하기!
+function renderTodos(filteredTodos = todos) {
+  // 필터링된 todos 배열이 없을 경우 기본값으로 todos를 사용
+  if (!Array.isArray(filteredTodos)) {
+    console.error("filteredTodos is not an array:", filteredTodos);
+    return;
+  }
+
+  const tbody = document.querySelector("table tbody");
+  tbody.innerHTML = ""; // 기존 내용을 비우고 새로 렌더링
+
+  filteredTodos.forEach((todo) => {
     const tr = document.createElement("tr");
     tr.classList.add("todo-data");
     tr.dataset.id = todo.id;
