@@ -209,6 +209,42 @@ table tbody {
   text-align: center;
 }
 
+/* 모달창 */
+.modal {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  z-index: 3;
+  width: 100vw;
+  height: 100dvh;
+  justify-content: center;
+  align-items: center;
+}
+.modal .modal-contents {
+  background-color: white;
+  width: 50%;
+  padding: 30px 26px;
+  border-radius: 10px;
+  text-align: center;
+}
+.modal .modal-contents img {
+  width: 70px;
+  padding: 10px 0;
+}
+.modal .modal-contents .title {
+  font-size: 1rem;
+}
+.modal .modal-contents button {
+  padding: 7px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid silver;
+}
+.modal .modal-contents button:hover {
+  background-color: var(--main-color);
+  font-weight: bold;
+}
+
 /* 푸터 */
 footer {
   position: fixed;

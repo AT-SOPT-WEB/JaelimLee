@@ -142,7 +142,6 @@ function renderTodos(filteredTodos = todos) {
     const checkboxTd = document.createElement("td");
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
-    checkbox.checked = todo.completed;
     checkboxTd.appendChild(checkbox);
 
     const priorityTd = document.createElement("td");
@@ -218,15 +217,28 @@ deleteBtn.addEventListener("click", function () {
 
   todos = todos.filter((todo) => !checkedIds.includes(todo.id));
   localStorage.setItem("Todo", JSON.stringify(todos));
-
+  const checkboxes = document.querySelectorAll(
+    'table tbody input[type="checkbox"]'
+  );
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = false; // 모든 체크박스를 unchecked로 설정
+  });
   renderTodos();
 });
 
-// 삭제 버튼 클릭 시 체크된 todo 삭제
+// 모달 로직
+const modal = document.querySelector(".modal");
+const modalBtn = document.querySelector(".modal-btn");
+modalBtn.addEventListener("click", function () {
+  modal.style.display = "none";
+});
+// 완료 버튼 클릭 시 체크된 todo 삭제
 const addBtn = document.querySelector(".edit-bar .add-btn");
 addBtn.addEventListener("click", function () {
   // 모든 tr 요소들
   const rows = document.querySelectorAll("table tbody tr");
+
+  let isCompletedTodoFound = false; // completed=true인 todo가 있는지 확인하는 변수
 
   // 각 tr에 대해 완료 상태 업데이트
   rows.forEach((row) => {
@@ -235,17 +247,30 @@ addBtn.addEventListener("click", function () {
       const id = row.dataset.id; // tr의 데이터 id
       const todo = todos.find((todo) => todo.id == id); // 해당 id의 todo 찾기
 
-      if (todo && !todo.completed) {
+      if (todo && todo.completed) {
+        // completed=true인 todo가 이미 있으면 alert 한번만 띄우기
+        isCompletedTodoFound = true;
+      } else if (todo && !todo.completed) {
         // 완료 상태로 변경
         todo.completed = true;
 
         // 완료 여부를 "완료"로 변경
         const completedTd = row.querySelector("td:nth-child(3)");
-        completedTd.textContent = "완료";
+        completedTd.textContent = "✅";
       }
     }
   });
 
+  // 만약 completed=true인 항목이 있었다면 alert 한번만 띄우기
+  if (isCompletedTodoFound) {
+    modal.style.display = "flex";
+  }
+  const checkboxes = document.querySelectorAll(
+    'table tbody input[type="checkbox"]'
+  );
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = false; // 모든 체크박스를 unchecked로 설정
+  });
   // localStorage에 업데이트된 todos 저장
   localStorage.setItem("Todo", JSON.stringify(todos));
 });
