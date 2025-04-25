@@ -71,9 +71,9 @@ additionBtn.addEventListener("click", function () {
     console.log(additionTxt.value);
 
     todos.push({
-      id: 10,
-      title: "행복하고 건강하고 취뽀하기",
-      completed: true,
+      id: todos.length + 1,
+      title: additionTxt.value,
+      completed: false,
       priority: parseInt(additionSelect.value),
     });
     console.log(todos);
@@ -102,7 +102,7 @@ function renderTodos() {
     priorityTd.textContent = todo.priority;
 
     const completedTd = document.createElement("td");
-    completedTd.textContent = todo.completed ? "완료" : "미완료";
+    completedTd.textContent = todo.completed ? "✅" : "❌";
 
     const titleTd = document.createElement("td");
     titleTd.textContent = todo.title;
@@ -173,6 +173,34 @@ deleteBtn.addEventListener("click", function () {
   localStorage.setItem("Todo", JSON.stringify(todos));
 
   renderTodos();
+});
+
+// 삭제 버튼 클릭 시 체크된 todo 삭제
+const addBtn = document.querySelector(".edit-bar .add-btn");
+addBtn.addEventListener("click", function () {
+  // 모든 tr 요소들
+  const rows = document.querySelectorAll("table tbody tr");
+
+  // 각 tr에 대해 완료 상태 업데이트
+  rows.forEach((row) => {
+    const checkbox = row.querySelector("input[type='checkbox']");
+    if (checkbox && checkbox.checked) {
+      const id = row.dataset.id; // tr의 데이터 id
+      const todo = todos.find((todo) => todo.id == id); // 해당 id의 todo 찾기
+
+      if (todo && !todo.completed) {
+        // 완료 상태로 변경
+        todo.completed = true;
+
+        // 완료 여부를 "완료"로 변경
+        const completedTd = row.querySelector("td:nth-child(3)");
+        completedTd.textContent = "완료";
+      }
+    }
+  });
+
+  // localStorage에 업데이트된 todos 저장
+  localStorage.setItem("Todo", JSON.stringify(todos));
 });
 
 // 전체 렌더링
