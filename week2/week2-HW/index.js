@@ -101,7 +101,7 @@ const selectToggleButtons = document.querySelectorAll(".select-toggle div");
 
 selectToggleButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    selectToggle.style.display = "none"; // 선택 후 toggle 숨기기
+    selectToggle.style.display = "none !important"; // 선택 후 toggle 숨기기
     const priority = parseInt(button.id.replace("select-toggle-", "")); // button의 id에서 중요도 추출
     const filteredTodos = todos.filter((todo) => todo.priority === priority); // 중요도로 필터링
     renderTodos(filteredTodos); // 필터링된 todos 렌더링
