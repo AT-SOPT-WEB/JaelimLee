@@ -79,6 +79,7 @@ additionBtn.addEventListener("click", function () {
     console.log(todos);
     localStorage.setItem("Todo", JSON.stringify(todos));
   }
+  renderTodos();
   additionTxt.value = "";
 });
 // 일정 데이터 fetch하기!
@@ -89,6 +90,7 @@ function renderTodos() {
   todos.forEach((todo) => {
     const tr = document.createElement("tr");
     tr.classList.add("todo-data");
+    tr.dataset.id = todo.id;
 
     const checkboxTd = document.createElement("td");
     const checkbox = document.createElement("input");
@@ -114,4 +116,64 @@ function renderTodos() {
   });
 }
 
+// 체크박스 제어 (all-check 쪽)
+let isAll = false;
+const controlCheckBtn = document.querySelector("table thead #all-check");
+const checkboxes = document.querySelectorAll(
+  'table tbody input[type="checkbox"]'
+);
+// 전체 체크박스임
+controlCheckBtn.addEventListener("click", function () {
+  const checkbox = document.querySelectorAll(
+    'table tbody input[type="checkbox"]'
+  );
+  if (isAll == false) {
+    checkbox.forEach((cb) => {
+      cb.checked = true;
+    });
+  } else {
+    checkbox.forEach((cb) => {
+      cb.checked = false;
+    });
+  }
+  // isAll 값 토글
+  isAll = !isAll;
+});
+// 개별 체크박스
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener("change", function () {
+    // 모든 체크박스 중 하나라도 해제되면, all-check 체크박스를 해제
+    if (!this.checked) {
+      document.querySelector("#all-check input").checked = false;
+      isAll = false;
+    } else {
+      const allChecked = Array.from(checkboxes).every((cb) => cb.checked);
+      if (allChecked) {
+        document.querySelector("#all-check input").checked = true;
+        isAll = true;
+      }
+    }
+  });
+});
+
+// 삭제 버튼 클릭 시 체크된 todo 삭제
+const deleteBtn = document.querySelector(".edit-bar .delete-btn");
+deleteBtn.addEventListener("click", function () {
+  // 선택된 체크박스
+  const checkedCheckboxes = document.querySelectorAll(
+    "table tbody input[type='checkbox']:checked"
+  );
+
+  const checkedIds = Array.from(checkedCheckboxes).map((checkbox) => {
+    const row = checkbox.closest("tr");
+    return parseInt(row.dataset.id);
+  });
+
+  todos = todos.filter((todo) => !checkedIds.includes(todo.id));
+  localStorage.setItem("Todo", JSON.stringify(todos));
+
+  renderTodos();
+});
+
+// 전체 렌더링
 renderTodos();
