@@ -25,6 +25,7 @@ body {
 }
 header {
   position: fixed;
+  z-index: 2;
   width: 100%;
   background-color: var(--main-color);
   padding: 20px;
