@@ -39,13 +39,17 @@ const navTab = css`
   }
 `;
 // 1976D2
-const Header = () => {
+const Header = ({ select, handlePage }) => {
   return (
     <div css={headerStyle}>
       <h1 css={h1Style}>무엇을 하시겠습니까</h1>
       <nav css={navStyle}>
-        <div css={navTab}>깃허브 검색</div>
-        <div css={navTab}>숫자 야구</div>
+        <div css={navTab} onClick={() => handlePage("깃허브")}>
+          깃허브 검색
+        </div>
+        <div css={navTab} onClick={() => handlePage("야구")}>
+          숫자 야구
+        </div>
       </nav>
     </div>
   );
