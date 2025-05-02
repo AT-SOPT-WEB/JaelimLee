@@ -12,7 +12,7 @@ const searchAreaStyle = css`
 const mainStyle = css`
   background-color: rgb(235, 235, 235);
   width: 100%;
-  height: 100dvh;
+  height: calc(100vh - 200px);
   padding-top: 200px;
   display: flex;
   flex-direction: column;
@@ -98,6 +98,7 @@ const recentSearchItemStyle = css`
   align-items: center;
   background-color: rgba(187, 222, 251, 0.49);
   border-radius: 17px;
+  cursor: pointer;
 `;
 
 const recentSearchTextStyle = css`
