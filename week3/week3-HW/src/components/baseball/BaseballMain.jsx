@@ -7,7 +7,11 @@ const mainStyle = css`
   paddin-top: 158px;
 `;
 const BaseballMain = () => {
-  return <div css={mainStyle}>야구</div>;
+  <div css={mainStyle}>
+    <div>
+      <input type="text" placeholder="3자리 숫자를 입력해주세요" />
+    </div>
+  </div>;
 };
 
 export default BaseballMain;

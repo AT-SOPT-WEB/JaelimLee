@@ -26,7 +26,7 @@ const navTab = css`
   padding: 15px;
   flex: 1;
   color: white;
-  &:first-child {
+  &:first-of-type {
     border-right: solid #bbdefb 5px;
     border-radius: 10px 0 0 10px;
   }
