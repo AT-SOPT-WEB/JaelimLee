@@ -123,11 +123,8 @@ const BaseballMain = () => {
         setGameResult((prevResults) => [...prevResults, resultMessage]);
 
         if (strike === 3) {
-          setGameResult((prevResults) => [
-            ...prevResults,
-            "정답입니다! 3게임을 다시 시작하세요.",
-          ]);
-          setStrikeBallMessage("정답입니다! 게임을 다시 시작하세요.");
+          setGameResult((prevResults) => [...prevResults, "정답입니다!"]);
+          setStrikeBallMessage("3초 후 게임을 다시 시작하겠습니다.");
           setTimeout(() => {
             setRestartGame(true);
           }, 3000);
