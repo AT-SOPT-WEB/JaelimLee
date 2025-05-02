@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { css } from "@emotion/react";
 /** @jsxImportSource @emotion/react */
 const searchAreaStyle = css`
@@ -10,7 +10,7 @@ const searchAreaStyle = css`
 `;
 
 const mainStyle = css`
-  background-color: rgb(225, 228, 231);
+  background-color: rgb(235, 235, 235);
   width: 100%;
   height: 100dvh;
   padding-top: 200px;
@@ -32,6 +32,7 @@ const gitBtnStyle = css`
   width: 10%;
   background-color: black;
   color: white;
+  font-weight: bold;
 `;
 
 const gitBoxStyle = css`
@@ -64,7 +65,7 @@ const gitFollowStyle = css`
   gap: 20px;
 `;
 
-const gitCloseStyle = css`
+const gitBoxCloseStyle = css`
   width: 30px;
   height: 30px;
   border-radius: 999px;
@@ -79,12 +80,46 @@ const gitCloseStyle = css`
   cursor: pointer;
 `;
 
+const recentSearchStyle = css`
+  display: flex;
+  gap: 10px;
+  width: 80%;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    display: none; /* 스크롤바 숨기기 */
+  }
+`;
+
+const recentSearchItemStyle = css`
+  display: flex;
+  padding: 12px;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  background-color: rgba(187, 222, 251, 0.49);
+  border-radius: 17px;
+`;
+
+const recentSearchTextStyle = css`
+  font-size: 1rem;
+  color: rgb(1, 36, 65);
+`;
+
+const githubCloseStyle = css`
+  padding: 5px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  color: white;
+  background-color: black;
+`;
+
 const GithubMain = () => {
   const [userInfo, setUserInfo] = useState({ status: "idle", data: null });
-  const [githubUser, setGithubUser] = useState(""); // input
-  const [showGitBox, setShowGitBox] = useState(true); // gitBox 쪽
+  const [githubUser, setGithubUser] = useState("");
+  const [showGitBox, setShowGitBox] = useState(true);
+  const [recentSearches, setRecentSearches] = useState([]);
 
-  // 사용자 정보 가져오기
+  // 사용자 정보를 가져오는 함수
   const getUserInfo = async (user) => {
     setShowGitBox(true);
     setUserInfo({ status: "pending", data: null });
@@ -94,6 +129,17 @@ const GithubMain = () => {
       const data = await response.json();
       console.log(data);
       setUserInfo({ status: "resolved", data });
+
+      const updatedSearches = [
+        ...recentSearches.filter((item) => item !== user),
+        user, // 최신 검색어를 맨 뒤에 추가
+      ];
+
+      // 심화 과제 조건 : 최근 검색어는 최대 3개까지 저장
+      if (updatedSearches.length > 3) updatedSearches.shift();
+
+      setRecentSearches(updatedSearches);
+      localStorage.setItem("recentSearches", JSON.stringify(updatedSearches));
     } catch {
       setUserInfo({ status: "rejected", data: null });
     }
@@ -104,9 +150,30 @@ const GithubMain = () => {
   };
 
   const handleCloseClick = () => {
-    setShowGitBox(false);
-    setGithubUser(""); // input 초기화
+    setShowGitBox(false); // gitBox 숨기기
+    setGithubUser(""); // input 창 내용 초기화
   };
+
+  const handleDeleteSearch = (searchTerm) => {
+    const updatedSearches = recentSearches.filter(
+      (item) => item !== searchTerm
+    );
+    setRecentSearches(updatedSearches);
+    localStorage.setItem("recentSearches", JSON.stringify(updatedSearches)); // localStorage에서 삭제
+  };
+
+  // 심화 과제 조건 : 검색어 클릭 시 해당 아이디로 검색
+  const handleRecentSearchClick = (searchTerm) => {
+    setGithubUser(searchTerm);
+    getUserInfo(searchTerm);
+  };
+
+  useEffect(() => {
+    const storedSearches = JSON.parse(localStorage.getItem("recentSearches"));
+    if (storedSearches) {
+      setRecentSearches(storedSearches);
+    }
+  }, []);
 
   return (
     <div css={mainStyle}>
@@ -123,9 +190,31 @@ const GithubMain = () => {
         </button>
       </div>
 
+      {/* 최근 검색어 */}
+      {recentSearches.length > 0 && (
+        <div css={recentSearchStyle}>
+          {recentSearches.reverse().map((searchTerm, index) => (
+            <div key={index} css={recentSearchItemStyle}>
+              <span
+                css={recentSearchTextStyle}
+                onClick={() => handleRecentSearchClick(searchTerm)}
+              >
+                {searchTerm}
+              </span>
+              <button
+                css={githubCloseStyle}
+                onClick={() => handleDeleteSearch(searchTerm)}
+              >
+                x
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+
       {userInfo.status === "resolved" && showGitBox && (
         <div css={gitBoxStyle}>
-          <div css={gitCloseStyle} onClick={handleCloseClick}>
+          <div css={gitBoxCloseStyle} onClick={handleCloseClick}>
             x
           </div>
           <a href={userInfo.data.html_url} target="_blank">
