@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { css } from "@emotion/react";
 /** @jsxImportSource @emotion/react */
 
-// 스타일 정의
 const searchAreaStyle = css`
   display: flex;
   justify-content: center;
@@ -55,15 +54,15 @@ const strikeBallTextStyle = css`
 
 const BaseballMain = () => {
   // 상태 관리
-  const [numInput, setNumInput] = useState(""); // 유저의 입력값
-  const [randomNumber, setRandomNumber] = useState(""); // 게임에서 생성한 랜덤 숫자
-  const [gameResult, setGameResult] = useState([]); // 게임의 결과 저장 (스트라이크, 볼)
+  const [numInput, setNumInput] = useState("");
+  const [randomNumber, setRandomNumber] = useState("");
+  const [gameResult, setGameResult] = useState([]);
   const [strikeBallCount, setStrikeBallCount] = useState({
     strike: 0,
     ball: 0,
   });
-  const [strikeBallMessage, setStrikeBallMessage] = useState(""); // 결과 메시지
-  const [restartGame, setRestartGame] = useState(false); // 새로운 게임 시작
+  const [strikeBallMessage, setStrikeBallMessage] = useState("");
+  const [restartGame, setRestartGame] = useState(false);
 
   const generateRandomNumber = () => {
     const randomNumbers = [];
@@ -105,14 +104,14 @@ const BaseballMain = () => {
     if (e.key === "Enter") {
       e.preventDefault();
 
-      // 중복 숫자 검사
       const inputArray = numInput.split("");
-      const uniqueDigits = new Set(inputArray);
+      const uniqueDigits = new Set(inputArray); // 중복 숫자 확인하기 !
 
-      if (inputArray.length !== 3 || uniqueDigits.size !== 3) {
-        setStrikeBallMessage(
-          "중복된 숫자는 입력할 수 없습니다. 3자리 숫자를 입력해주세요."
-        );
+      if (inputArray.length !== 3) {
+        setStrikeBallMessage("3자리 숫자를 입력해주세요.");
+        return;
+      } else if (uniqueDigits.size !== 3) {
+        setStrikeBallMessage("중복된 숫자는 입력할 수 없습니다.");
         return;
       }
 
@@ -170,4 +169,5 @@ const BaseballMain = () => {
     </div>
   );
 };
+
 export default BaseballMain;
