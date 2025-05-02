@@ -109,9 +109,11 @@ const BaseballMain = () => {
 
       if (inputArray.length !== 3) {
         setStrikeBallMessage("3자리 숫자를 입력해주세요.");
+        setNumInput("");
         return;
       } else if (uniqueDigits.size !== 3) {
         setStrikeBallMessage("중복된 숫자는 입력할 수 없습니다.");
+        setNumInput("");
         return;
       }
 
