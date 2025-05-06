@@ -18,15 +18,12 @@ additionBtn.addEventListener("click", function () {
   if (additionSelect.value == "score-default" || additionTxt.value === "") {
     alert("입력조건을 확인해주세요 (할 일 입력 및 중요도 지정)");
   } else {
-    console.log(additionTxt.value);
-
     todos.push({
       id: todos.length + 1,
       title: additionTxt.value,
       completed: false,
       priority: parseInt(additionSelect.value),
     });
-    console.log(todos);
     localStorage.setItem("Todo", JSON.stringify(todos));
   }
   renderTodos();
