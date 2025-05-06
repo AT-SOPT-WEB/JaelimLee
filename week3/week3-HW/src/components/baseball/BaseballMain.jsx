@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { css } from "@emotion/react";
+import BaseballInput from "./BaseballInput";
 /** @jsxImportSource @emotion/react */
 
 const searchAreaStyle = css`
@@ -19,12 +20,6 @@ const mainStyle = css`
   flex-direction: column;
   gap: 26px;
   align-items: center;
-`;
-
-const inputBaseBallStyle = css`
-  border-radius: 10px;
-  padding: 15px;
-  width: 50%;
 `;
 
 const resultStyle = css`
@@ -105,7 +100,7 @@ const BaseballMain = () => {
       e.preventDefault();
 
       const inputArray = numInput.split("");
-      const uniqueDigits = new Set(inputArray); // 중복 숫자 확인하기 !
+      const uniqueDigits = new Set(inputArray); // 중복 숫자 확인하기!
 
       if (inputArray.length !== 3) {
         setStrikeBallMessage("3자리 숫자를 입력해주세요.");
@@ -144,13 +139,10 @@ const BaseballMain = () => {
   return (
     <div css={mainStyle}>
       <div css={searchAreaStyle}>
-        <input
-          css={inputBaseBallStyle}
-          type="text"
-          placeholder="3자리 숫자를 입력해주세요."
-          value={numInput}
-          onChange={handleUserInput}
-          onKeyPress={handleKeyPress}
+        <BaseballInput
+          numInput={numInput}
+          handleUserInput={handleUserInput}
+          handleKeyPress={handleKeyPress}
         />
       </div>
 
