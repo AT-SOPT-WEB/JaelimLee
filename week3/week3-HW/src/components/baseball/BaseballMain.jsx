@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { css } from "@emotion/react";
 import BaseballInput from "./BaseballInput";
+import GameResult from "./BaseballResult";
 /** @jsxImportSource @emotion/react */
 
 const searchAreaStyle = css`
@@ -20,25 +21,6 @@ const mainStyle = css`
   flex-direction: column;
   gap: 26px;
   align-items: center;
-`;
-
-const resultStyle = css`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 80%;
-`;
-
-const resultItemStyle = css`
-  background-color: rgba(187, 222, 251, 0.49);
-  border-radius: 17px;
-`;
-
-const gameResultTextStyle = css`
-  font-size: 1rem;
-  text-align: center;
-  font-weight: bold;
-  color: rgb(1, 36, 65);
 `;
 
 const strikeBallTextStyle = css`
@@ -150,13 +132,7 @@ const BaseballMain = () => {
         <p>{strikeBallMessage}</p>
       </div>
 
-      <div css={resultStyle}>
-        {gameResult.map((result, index) => (
-          <div key={index} css={resultItemStyle}>
-            <p css={gameResultTextStyle}>{result}</p>
-          </div>
-        ))}
-      </div>
+      <GameResult gameResult={gameResult} />
     </div>
   );
 };
