@@ -1,66 +1,16 @@
-let todos = JSON.parse(localStorage.getItem("Todo")) || [
-  {
-    id: 1,
-    title: "과제하기",
-    completed: false,
-    priority: 1,
-  },
-  {
-    id: 2,
-    title: "밥 먹기",
-    completed: false,
-    priority: 2,
-  },
-  {
-    id: 3,
-    title: "스터디 준비하기",
-    completed: true,
-    priority: 1,
-  },
-  {
-    id: 4,
-    title: "세미나 듣기",
-    completed: false,
-    priority: 3,
-  },
-  {
-    id: 5,
-    title: "운동 가기",
-    completed: false,
-    priority: 2,
-  },
-  {
-    id: 6,
-    title: "방 청소하기",
-    completed: true,
-    priority: 2,
-  },
-  {
-    id: 7,
-    title: "책 읽기",
-    completed: false,
-    priority: 1,
-  },
-  {
-    id: 8,
-    title: "행복하기",
-    completed: false,
-    priority: 3,
-  },
-];
+import { todosData as mockTodoData } from "./mock.js";
+
+let todos = JSON.parse(localStorage.getItem("Todo")) || mockTodoData;
 
 // nav 헤더
 const liElements = document.querySelectorAll(".nav-ul li");
 liElements.forEach((li) => {
   li.addEventListener("click", function () {
     liElements.forEach((item) => item.classList.remove("active"));
-
-    // 클릭한 li에 active 클래스 추가
     this.classList.add("active");
   });
 });
 
-// 입력 로직
 const additionBtn = document.querySelector(".addition-bar .addition-btn");
 const additionTxt = document.querySelector(".addition-bar .addition-input");
 const additionSelect = document.querySelector(".addition-bar .addition-select");
@@ -82,8 +32,6 @@ additionBtn.addEventListener("click", function () {
   renderTodos();
   additionTxt.value = "";
 });
-
-// HTML 요소 선택
 const allLi = document.getElementById("all-li");
 const completeLi = document.getElementById("complete-li");
 const incompleteLi = document.getElementById("incomplete-li");
@@ -101,25 +49,24 @@ const selectToggleButtons = document.querySelectorAll(".select-toggle div");
 
 selectToggleButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    selectToggle.style.display = "none !important"; // 선택 후 toggle 숨기기
-    const priority = parseInt(button.id.replace("select-toggle-", "")); // button의 id에서 중요도 추출
-    const filteredTodos = todos.filter((todo) => todo.priority === priority); // 중요도로 필터링
-    renderTodos(filteredTodos); // 필터링된 todos 렌더링
+    selectToggle.style.display = "none !important";
+    const priority = parseInt(button.id.replace("select-toggle-", ""));
+    const filteredTodos = todos.filter((todo) => todo.priority === priority);
+    renderTodos(filteredTodos);
   });
 });
 
-// nav 리스트에 클릭 이벤트 추가
 allLi.addEventListener("click", () => {
-  renderTodos(todos); // 전체 목록 렌더링
+  renderTodos(todos);
 });
 
 completeLi.addEventListener("click", () => {
-  const filteredTodos = todos.filter((todo) => todo.completed); // 완료된 항목만 필터링
+  const filteredTodos = todos.filter((todo) => todo.completed);
   renderTodos(filteredTodos);
 });
 
 incompleteLi.addEventListener("click", () => {
-  const filteredTodos = todos.filter((todo) => !todo.completed); // 완료된 항목만 필터링
+  const filteredTodos = todos.filter((todo) => !todo.completed);
   renderTodos(filteredTodos);
 });
 
@@ -205,7 +152,6 @@ checkboxes.forEach((checkbox) => {
 // 삭제 버튼 클릭 시 체크된 todo 삭제
 const deleteBtn = document.querySelector(".edit-bar .delete-btn");
 deleteBtn.addEventListener("click", function () {
-  // 선택된 체크박스
   const checkedCheckboxes = document.querySelectorAll(
     "table tbody input[type='checkbox']:checked"
   );
@@ -232,31 +178,28 @@ const modalBtn = document.querySelector(".modal-btn");
 modalBtn.addEventListener("click", function () {
   modal.style.display = "none";
 });
-// 완료 버튼 클릭 시 체크된 todo 삭제
+
 const addBtn = document.querySelector(".edit-bar .add-btn");
 addBtn.addEventListener("click", function () {
-  // 모든 tr 요소들
   const rows = document.querySelectorAll("table tbody tr");
-
   let isCompletedTodoFound = false; // completed=true인 todo가 있는지 확인하는 변수
 
   // 각 tr에 대해 완료 상태 업데이트
   rows.forEach((row) => {
     const checkbox = row.querySelector("input[type='checkbox']");
     if (checkbox && checkbox.checked) {
-      const id = row.dataset.id; // tr의 데이터 id
-      const todo = todos.find((todo) => todo.id == id); // 해당 id의 todo 찾기
+      const id = row.dataset.id;
+      const todo = todos.find((todo) => todo.id == id);
 
-      if (todo && todo.completed) {
-        // completed=true인 todo가 이미 있으면 alert 한번만 띄우기
-        isCompletedTodoFound = true;
-      } else if (todo && !todo.completed) {
-        // 완료 상태로 변경
-        todo.completed = true;
+      if (todo) {
+        if (todo.completed) {
+          isCompletedTodoFound = true;
+        } else if (!todo.completed) {
+          todo.completed = true;
 
-        // 완료 여부를 "완료"로 변경
-        const completedTd = row.querySelector("td:nth-child(3)");
-        completedTd.textContent = "✅";
+          const completedTd = row.querySelector("td:nth-child(3)");
+          completedTd.textContent = "✅";
+        }
       }
     }
   });
@@ -269,9 +212,8 @@ addBtn.addEventListener("click", function () {
     'table tbody input[type="checkbox"]'
   );
   checkboxes.forEach((checkbox) => {
-    checkbox.checked = false; // 모든 체크박스를 unchecked로 설정
+    checkbox.checked = false;
   });
-  // localStorage에 업데이트된 todos 저장
   localStorage.setItem("Todo", JSON.stringify(todos));
 });
 
