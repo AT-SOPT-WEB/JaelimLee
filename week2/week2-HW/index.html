@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="kor" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2주차 과제 _ 투두리스트트</title>
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <link rel="stylesheet" href="./styles/reset.css" />
+  </head>
+  <body>
+    <div class="modal">
+      <div class="modal-contents">
+        <div class="title">이미 완료된 할 일입니다</div>
+        <img
+          src="https://static.vecteezy.com/system/resources/previews/021/494/711/non_2x/cute-smile-clover-with-red-cheek-free-png.png"
+        />
+        <button class="modal-btn">확인</button>
+      </div>
+    </div>
+    <header><h1>재림's todolist</h1></header>
+    <main>
+      <nav>
+        <ul class="nav-ul">
+          <li id="all-li">전체</li>
+          <li id="complete-li">완료됨</li>
+          <li id="incomplete-li">미완료</li>
+          <li id="select-li">
+            <span>중요도</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              id="chevron-down"
+            >
+              <path
+                d="M12,15a1,1,0,0,1-.71-.29l-4-4A1,1,0,0,1,8.71,9.29L12,12.59l3.29-3.29a1,1,0,0,1,1.41,1.41l-4,4A1,1,0,0,1,12,15Z"
+              ></path>
+            </svg>
+            <div class="select-toggle">
+              <div id="select-toggle-3">3</div>
+              <div id="select-toggle-2">2</div>
+              <div id="select-toggle-1">1</div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <div class="addition-bar">
+          <input
+            class="addition-input"
+            placeholder="할 일을 입력하세요"
+            type="text"
+          />
+          <select class="addition-select">
+            <option value="score-default">중요도</option>
+            <option value="3">3점</option>
+            <option value="2">2점</option>
+            <option value="1">1점</option>
+          </select>
+          <button class="addition-btn" value="등록">등록</button>
+        </div>
+        <div class="edit-bar">
+          <div class="btn delete-btn">삭제</div>
+          <div class="btn add-btn">완료</div>
+        </div>
+        <table>
+          <thead>
+            <tr id="all-check">
+              <th><input type="checkbox" /></th>
+              <th>중요도</th>
+              <th>완료 여부</th>
+              <th>할 일</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+    <footer>@copywrite leejaelim _ 2주차 과제</footer>
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>

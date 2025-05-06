@@ -1,0 +1,257 @@
+@font-face {
+  font-family: "PartialSansKR-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/PartialSansKR-Regular.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "NoonnuBasicGothicRegular";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noon-2410@1.0/NoonnuBasicGothicRegular.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+:root {
+  --main-title: "PartialSansKR-Regular";
+  --main-font: "NoonnuBasicGothicRegular";
+  --main-color: rgb(187, 236, 188);
+  --main-sub: rgb(241, 241, 241);
+}
+body {
+  box-sizing: border-box;
+  background-color: white;
+  font-family: var(--main-font);
+}
+header {
+  position: fixed;
+  z-index: 5;
+  width: 100%;
+  background-color: var(--main-color);
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: var(--main-title);
+  font-size: 1.2rem;
+}
+/* 메인 쪽 */
+main {
+  padding: 70px 10px 58px 10px;
+}
+nav ul {
+  padding-inline-start: 0;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+nav ul li {
+  padding: 8px 12px; /* 수정: 위, 아래 패딩을 균일하게 설정 */
+  background-color: var(--main-sub);
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center; /* 수직 정렬 */
+  height: 40px; /* 일관된 높이 설정 */
+}
+
+nav ul li.active {
+  background-color: var(--main-color);
+  color: rgb(12, 70, 12);
+  font-weight: bold;
+}
+
+nav ul li:hover {
+  background-color: var(--main-color);
+  font-weight: bold;
+}
+
+nav ul li:last-child {
+  padding: 8px 12px; /* 아래 패딩 일관성 */
+}
+
+nav ul li span {
+  display: inline-block;
+  margin-right: 6px; /* span과 아이콘 사이의 간격 */
+}
+
+nav ul li svg {
+  width: 18px; /* 아이콘 크기 */
+  height: 18px; /* 아이콘 크기 */
+  margin-left: 6px; /* 아이콘과 텍스트 사이의 간격 */
+  vertical-align: middle; /* 수직 정렬 */
+}
+
+nav ul li select {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 15px;
+  font-family: var(--main-font);
+}
+
+.select-toggle {
+  display: none;
+}
+
+nav ul li select {
+  margin-left: 8px; /* select 박스와 아이콘 사이의 간격 */
+}
+#select-li {
+  position: relative;
+}
+.select-toggle {
+  display: none;
+  position: absolute;
+  bottom: -90px;
+  left: 3px;
+  width: 87px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  border: 1px solid rgb(221, 221, 221);
+}
+.select-toggle div {
+  text-align: center;
+  padding: 7px;
+}
+.select-toggle div:nth-child(1) {
+  border-radius: 7px 7px 0 0;
+}
+.select-toggle div:nth-child(3) {
+  border-radius: 0 0 7px 7px;
+}
+.select-toggle div:hover {
+  background-color: rgba(214, 214, 214, 0.634);
+}
+/* 입력 바 */
+.addition-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 12px 0;
+  padding: 12px 8px;
+  border-radius: 5px;
+  background-color: var(--main-sub);
+}
+.addition-bar .addition-input {
+  width: 70%;
+  padding: 8px;
+  border-radius: 5px;
+  flex: 1;
+  border: 1px solid silver;
+}
+.addition-bar select {
+  border: 1px solid silver;
+  border-radius: 5px;
+  border: 1px solid silver;
+  padding: 5px;
+}
+.addition-bar .addition-btn {
+  background-color: var(--main-color);
+  border: none;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+/* 수정바 */
+.edit-bar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+.edit-bar .btn {
+  padding: 10px 8px 8px;
+  background-color: var(--main-sub);
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: var(--main-color);
+  font-weight: bold;
+}
+
+/* 할 일 table */
+table {
+  margin-top: 20px !important;
+  box-sizing: border-box;
+  width: 100%;
+}
+table tr {
+  display: flex;
+  justify-content: space-between;
+}
+table thead tr {
+  padding: 10px;
+}
+table tbody {
+  border-bottom: 3px solid rgb(220, 220, 220);
+}
+
+table tbody tr {
+  border-bottom: 1px solid rgb(220, 220, 220);
+  padding: 12px 10px;
+}
+table tbody tr:last-child {
+  border: none;
+}
+
+table thead {
+  border-bottom: 3px solid rgb(220, 220, 220);
+}
+table tr th,
+table tbody tr td {
+  flex: 1;
+  text-align: left;
+}
+table tbody {
+  text-align: center;
+}
+
+/* 모달창 */
+.modal {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  z-index: 3;
+  width: 100vw;
+  height: 100dvh;
+  justify-content: center;
+  align-items: center;
+}
+.modal .modal-contents {
+  background-color: white;
+  width: 50%;
+  padding: 30px 26px;
+  border-radius: 10px;
+  text-align: center;
+}
+.modal .modal-contents img {
+  width: 70px;
+  padding: 10px 0;
+}
+.modal .modal-contents .title {
+  font-size: 1rem;
+}
+.modal .modal-contents button {
+  padding: 7px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid silver;
+}
+.modal .modal-contents button:hover {
+  background-color: var(--main-color);
+  font-weight: bold;
+}
+
+/* 푸터 */
+footer {
+  position: fixed;
+  bottom: 0;
+  background-color: var(--main-color);
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+}
