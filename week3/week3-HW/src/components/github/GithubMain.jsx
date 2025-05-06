@@ -1,13 +1,7 @@
 import { useState, useEffect } from "react";
 import { css } from "@emotion/react";
+import GithubInput from "./GithubInput";
 /** @jsxImportSource @emotion/react */
-const searchAreaStyle = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 17px;
-  width: 100%;
-`;
 
 const mainStyle = css`
   background-color: rgb(235, 235, 235);
@@ -18,21 +12,6 @@ const mainStyle = css`
   flex-direction: column;
   gap: 50px;
   align-items: center;
-`;
-
-const inputGitStyle = css`
-  border-radius: 10px;
-  padding: 15px;
-  width: 50%;
-`;
-
-const gitBtnStyle = css`
-  border-radius: 10px;
-  padding: 10px;
-  width: 10%;
-  background-color: black;
-  color: white;
-  font-weight: bold;
 `;
 
 const gitBoxStyle = css`
@@ -113,7 +92,6 @@ const githubCloseStyle = css`
   color: white;
   background-color: black;
 `;
-
 const GithubMain = () => {
   const [userInfo, setUserInfo] = useState({ status: "idle", data: null });
   const [githubUser, setGithubUser] = useState("");
@@ -178,18 +156,11 @@ const GithubMain = () => {
 
   return (
     <div css={mainStyle}>
-      <div css={searchAreaStyle}>
-        <input
-          css={inputGitStyle}
-          type="text"
-          placeholder="Github 프로필을 검색합니다"
-          value={githubUser}
-          onChange={handleInputChange}
-        />
-        <button css={gitBtnStyle} onClick={() => getUserInfo(githubUser)}>
-          검색
-        </button>
-      </div>
+      <GithubInput
+        githubUser={githubUser}
+        onChange={handleInputChange}
+        onSearch={() => getUserInfo(githubUser)}
+      />
 
       {/* 최근 검색어 */}
       {recentSearches.length > 0 && (
