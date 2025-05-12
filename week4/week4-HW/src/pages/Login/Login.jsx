@@ -2,6 +2,7 @@
 import { css } from "@emotion/react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import axios from "axios";
 import {
   mainStyle,
   formStyle,
@@ -13,12 +14,25 @@ const Login = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
+  const fetchDetailData = async () => {
+    try {
+      const res = await axios.post(
+        "https://api.atsopt-seminar4.site/api/v1/auth/signin",
+        {
+          id,
+          password,
+        }
+      );
+      console.log(res.code);
+      navigate("/");
+    } catch (error) {
+      console.log(error.code);
+    }
+  };
   const handleLogin = () => {
     if (id && password) {
       localStorage.setItem("userId", id);
-      console.log(id);
-      navigate("/");
+      fetchDetailData();
     } else {
       alert("아이디와 비밀번호를 모두 입력해주세요.");
     }
