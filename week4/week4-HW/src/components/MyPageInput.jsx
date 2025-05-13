@@ -19,10 +19,6 @@ const MyPageInput = ({ title, label, btnTxt, name }) => {
     }
   }, []);
   const handleUpdateNickname = async () => {
-    if (inputValue.trim() === "") {
-      alert("검색어를 입력해주세요.");
-      return;
-    }
     if (name === "myInfo") {
       try {
         const response = await api.patch(
@@ -30,7 +26,7 @@ const MyPageInput = ({ title, label, btnTxt, name }) => {
           { nickname: inputValue },
           { headers: { userId } }
         );
-        console.log("Nickname updated successfully", response.data);
+        alert(`${inputValue}로 닉네임 변경 성공 !`);
       } catch (error) {
         console.error("Error updating nickname", error);
         alert("닉네임을 변경하는 데 실패했습니다.");

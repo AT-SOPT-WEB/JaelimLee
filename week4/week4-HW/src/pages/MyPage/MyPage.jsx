@@ -58,7 +58,14 @@ const Home = () => {
         <div css={headerLeft}>
           <div onClick={() => navigate("/mypage/myInfo")}>내 정보</div>
           <div onClick={() => navigate("/mypage/view")}>회원 조회</div>
-          <div onClick={() => navigate("/")}>로그아웃</div>
+          <div
+            onClick={() => {
+              localStorage.removeItem("userId");
+              navigate("/");
+            }}
+          >
+            로그아웃
+          </div>
         </div>
         <div>{userName}</div>
       </header>
