@@ -3,8 +3,7 @@ import { css } from "@emotion/react";
 export const mainStyle = css`
   background-color: rgb(228, 228, 228);
   width: 100%;
-  height: calc(100vh - 200px);
-  padding-top: 200px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 50px;

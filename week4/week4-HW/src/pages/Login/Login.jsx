@@ -22,7 +22,7 @@ const Login = () => {
         password,
       });
       console.log(res.code);
-      navigate("/");
+      navigate("/mypage/myInfo");
     } catch (error) {
       console.log(error.code);
     }
