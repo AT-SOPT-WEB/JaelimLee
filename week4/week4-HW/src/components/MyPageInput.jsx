@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { btnStyle } from "../pages/Login/LoginStyles.styles";
 import {
   mainInputStyle,
@@ -11,11 +11,20 @@ import api from "../services/api";
 const MyPageInput = ({ title, label, btnTxt, name }) => {
   const [inputValue, setInputValue] = useState("");
   const [nicknameList, setNicknameList] = useState([]);
-
+  const [userId, setUserId] = useState("");
+  useEffect(() => {
+    const storedUserId = localStorage.getItem("userId");
+    console.log("userId from localStorage:", storedUserId);
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+  }, []);
   const handleUpdateNickname = async () => {
+    if (inputValue.trim() === "") {
+      alert("검색어를 입력해주세요.");
+      return;
+    }
     if (name === "myInfo") {
-      const userId = localStorage.getItem("userId");
-
       try {
         const response = await api.patch(
           "/api/v1/users",
