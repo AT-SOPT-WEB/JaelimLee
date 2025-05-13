@@ -14,7 +14,6 @@ const MyPageInput = ({ title, label, btnTxt, name }) => {
   const [userId, setUserId] = useState("");
   useEffect(() => {
     const storedUserId = localStorage.getItem("userId");
-    console.log("userId from localStorage:", storedUserId);
     if (storedUserId) {
       setUserId(storedUserId);
     }
