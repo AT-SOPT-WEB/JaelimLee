@@ -31,14 +31,12 @@ const MyPageInput = ({ title, label, btnTxt, name }) => {
       try {
         const response = await api.get(`/api/v1/users?keyword=${inputValue}`);
 
-        // nicknameList가 undefined인지 확인하고 빈 배열로 처리
-        const nicknameList = response.data.nicknameList || [];
-        console.log("nicknameList", response.data.nicknameList);
+        const nicknameList = response.data.data.nicknameList || [];
         if (nicknameList.length === 0) {
           alert("닉네임이 없습니다.");
         } else {
           console.log("User details fetched successfully", response.data);
-          setNicknameList(nicknameList); // nicknameList를 상태에 저장
+          setNicknameList(nicknameList);
         }
       } catch (error) {
         console.error("Error fetching user details", error);
