@@ -65,7 +65,9 @@ const Login = () => {
         <div css={btnStyle} onClick={handleLogin}>
           로그인
         </div>
-        <div css={btnStyle}>회원가입</div>
+        <div css={btnStyle} onClick={() => navigate("/sign")}>
+          회원가입
+        </div>
       </form>
     </div>
   );
