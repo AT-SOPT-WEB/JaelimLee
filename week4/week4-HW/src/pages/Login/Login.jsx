@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import api from "../../services/api";
 import {
   mainStyle,
   formStyle,
@@ -11,18 +12,15 @@ import {
 } from "./LoginStyles.styles";
 
 const Login = () => {
-  const [id, setId] = useState("");
+  const [loginId, setLoginId] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const fetchDetailData = async () => {
     try {
-      const res = await axios.post(
-        "https://api.atsopt-seminar4.site/api/v1/auth/signin",
-        {
-          id,
-          password,
-        }
-      );
+      const res = await api.post("/api/v1/auth/signin", {
+        loginId,
+        password,
+      });
       console.log(res.code);
       navigate("/");
     } catch (error) {
@@ -30,8 +28,8 @@ const Login = () => {
     }
   };
   const handleLogin = () => {
-    if (id && password) {
-      localStorage.setItem("userId", id);
+    if (loginId && password) {
+      localStorage.setItem("userId", loginId);
       fetchDetailData();
     } else {
       alert("아이디와 비밀번호를 모두 입력해주세요.");
@@ -45,8 +43,8 @@ const Login = () => {
         <h3>비밀번호</h3>
         <div css={formInputStyle}>
           <input
-            value={id}
-            onChange={(e) => setId(e.target.value)}
+            value={loginId}
+            onChange={(e) => setLoginId(e.target.value)}
             placeholder="아이디"
             type="text"
           />
