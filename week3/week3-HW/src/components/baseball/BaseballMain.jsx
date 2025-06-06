@@ -40,6 +40,7 @@ const BaseballMain = () => {
   });
   const [strikeBallMessage, setStrikeBallMessage] = useState("");
   const [restartGame, setRestartGame] = useState(false);
+  const [attempts, setAttempts] = useState(0); // 심화 조건!! : 시도 횟수 확인하는경
 
   const generateRandomNumber = () => {
     const randomNumbers = [];
@@ -54,6 +55,7 @@ const BaseballMain = () => {
     if (restartGame) {
       setGameResult([]);
       setStrikeBallMessage("");
+      setAttempts(0);
     }
     const generatedNumber = generateRandomNumber();
     setRandomNumber(generatedNumber);
@@ -100,6 +102,7 @@ const BaseballMain = () => {
 
         const resultMessage = `${strike}S ${ball}B`;
         setGameResult((prevResults) => [...prevResults, resultMessage]);
+        setAttempts((prevAttempts) => prevAttempts + 1);
 
         if (strike === 3) {
           setGameResult((prevResults) => [...prevResults, "정답입니다!"]);
@@ -109,6 +112,14 @@ const BaseballMain = () => {
           }, 3000);
         } else {
           setStrikeBallMessage(`${strike} 스트라이크 ${ball} 볼`);
+        }
+
+        // 시도 횟수가 10번 이상인 경우임!
+        if (attempts >= 9) {
+          setStrikeBallMessage("게임 패배! 5초 후 게임을 초기화합니다.");
+          setTimeout(() => {
+            setRestartGame(true);
+          }, 5000);
         }
 
         setNumInput("");
