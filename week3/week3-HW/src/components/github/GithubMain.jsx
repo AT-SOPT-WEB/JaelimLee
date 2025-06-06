@@ -59,6 +59,23 @@ const gitBoxCloseStyle = css`
   line-height: 1px;
   cursor: pointer;
 `;
+const spinnerStyle = css`
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
 
 const GithubMain = () => {
   const [userInfo, setUserInfo] = useState({ status: "idle", data: null });
@@ -137,6 +154,11 @@ const GithubMain = () => {
           onSearchClick={handleRecentSearchClick}
           onDeleteClick={handleDeleteSearch}
         />
+      )}
+      {/* 심화조건 추가했슴다! : 상태 분기 */}
+      {userInfo.status === "pending" && <div css={spinnerStyle}></div>}
+      {userInfo.status === "rejected" && !userInfo.data && (
+        <p>해당 아이디를 찾을 수 없습니다!</p>
       )}
 
       {userInfo.status === "resolved" && showGitBox && (
